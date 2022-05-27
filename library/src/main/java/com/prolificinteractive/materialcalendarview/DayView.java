@@ -202,10 +202,18 @@ class DayView extends AppCompatCheckedTextView {
 
     private void regenerateBackground() {
         if (selectionDrawable != null) {
-            setBackgroundDrawable(selectionDrawable);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                setBackground(selectionDrawable);
+            } else {
+                setBackgroundDrawable(selectionDrawable);
+            }
         } else {
             mCircleDrawable = generateBackground(selectionColor, fadeTime, circleDrawableRect);
-            setBackgroundDrawable(mCircleDrawable);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                setBackground(mCircleDrawable);
+            } else {
+                setBackgroundDrawable(mCircleDrawable);
+            }
         }
     }
 
@@ -227,7 +235,7 @@ class DayView extends AppCompatCheckedTextView {
     private static Drawable generateCircleDrawable(final int color) {
         ShapeDrawable drawable = new ShapeDrawable(new OvalShape());
         drawable.getPaint().setColor(color);
-        return drawable;
+        return new CenterInsideDrawableWrapper(drawable);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
@@ -236,17 +244,17 @@ class DayView extends AppCompatCheckedTextView {
         Drawable mask = generateCircleDrawable(Color.WHITE);
         RippleDrawable rippleDrawable = new RippleDrawable(list, null, mask);
 //        API 21
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             rippleDrawable.setBounds(bounds);
         }
 
 //        API 22. Technically harmless to leave on for API 21 and 23, but not worth risking for 23+
-        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.LOLLIPOP_MR1) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
             int center = (bounds.left + bounds.right) / 2;
             rippleDrawable.setHotspotBounds(center, bounds.top, center, bounds.bottom);
         }
 
-        return rippleDrawable;
+        return new CenterInsideDrawableWrapper(rippleDrawable);
     }
 
     /**
