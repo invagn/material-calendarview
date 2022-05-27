@@ -3,9 +3,8 @@ package com.prolificinteractive.materialcalendarview;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.view.Gravity;
-import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 

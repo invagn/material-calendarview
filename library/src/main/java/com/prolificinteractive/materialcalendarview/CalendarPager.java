@@ -1,7 +1,7 @@
 package com.prolificinteractive.materialcalendarview;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.view.MotionEvent;
 
 /**
@@ -45,7 +45,7 @@ class CalendarPager extends ViewPager {
     public boolean canScrollVertically(int direction) {
         /**
          * disables scrolling vertically when paging disabled, fixes scrolling
-         * for nested {@link android.support.v4.view.ViewPager}
+         * for nested {@link ViewPager}
          */
         return pagingEnabled && super.canScrollVertically(direction);
     }
@@ -54,7 +54,7 @@ class CalendarPager extends ViewPager {
     public boolean canScrollHorizontally(int direction) {
         /**
          * disables scrolling horizontally when paging disabled, fixes scrolling
-         * for nested {@link android.support.v4.view.ViewPager}
+         * for nested {@link ViewPager}
          */
         return pagingEnabled && super.canScrollHorizontally(direction);
     }

@@ -1,9 +1,8 @@
 package com.prolificinteractive.materialcalendarview;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @Experimental
